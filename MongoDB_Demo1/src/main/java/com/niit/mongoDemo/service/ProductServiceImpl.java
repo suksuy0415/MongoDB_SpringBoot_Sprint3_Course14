@@ -30,7 +30,10 @@ public class ProductServiceImpl implements IProductService{
     }
 
     @Override
-    public Product getProduct(int productCode) {
+    public Product getProduct(int productCode)  {
+
+
+
         return productRepository.findById(productCode).get();
     }
 

@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{productCode}")
-    public ResponseEntity<?> getProdict(@PathVariable int productCode) throws ProductNotFoundException {
+    public ResponseEntity<?> getProduct(@PathVariable int productCode) throws ProductNotFoundException {
         Product fetchedProduct=null;
         ResponseEntity responseEntity=null;
         try {
@@ -52,10 +52,18 @@ public class ProductController {
 
     }
     @DeleteMapping("/product/{productCode}")
-    public ResponseEntity<?> deleteProduct(@PathVariable int productCode)
+    public ResponseEntity<?> deleteProduct(@PathVariable int productCode) throws ProductNotFoundException
     {
-        productService.deleteProduct(productCode);
-        return new ResponseEntity<>(HttpStatus.OK);
+
+            Product fetchPro = productService.getProduct(productCode);
+            ResponseEntity responseEntity = null;
+            if (fetchPro != null) {
+                productService.deleteProduct(productCode);
+                return responseEntity = new ResponseEntity<>("given data Deleted", HttpStatus.OK);
+
+            }
+
+            throw new ProductNotFoundException();
     }
 
     @GetMapping("/productStock")

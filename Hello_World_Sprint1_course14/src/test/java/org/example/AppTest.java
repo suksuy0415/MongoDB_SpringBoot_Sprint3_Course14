@@ -1,4 +1,4 @@
-package com.niit.mongoDemo;
+package org.example;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
