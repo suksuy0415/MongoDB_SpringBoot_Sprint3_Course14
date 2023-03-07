@@ -141,7 +141,7 @@ public class ProductControllerTest {
 
     @Test
     public void DeleteNotPresentProduct() throws Exception {
-        when(productService.getProduct(any())).thenThrow(ProductNotFoundException.class);
+       when(productService.getProduct(any())).thenThrow(ProductNotFoundException.class);
         mockMvc.perform(get("/product/{productCode}")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonToString(product1)))
